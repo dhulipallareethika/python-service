@@ -19,7 +19,7 @@ async def wrap_response(request: Request, call_next):
 @app.post("/generate")
 async def generate(request: GenerateRequest = Body(...)):
     diagramType = request.diagramType
-    diagramLanguage = request.diagramLanguage
+    umlType = request.umlType
     if diagramType == DiagramType.DATABASE:
         uml_context = await generate_diagram(
             "ERD",
@@ -56,13 +56,13 @@ async def generate(request: GenerateRequest = Body(...)):
     diagram_code = await generate_diagram(
         diagramType.value,
         request.requirementsText,
-        request.diagramLanguage,
+        umlType,
         request.classes,
         flag=False
     )
     return {
         "diagramType": diagramType,
-        "diagramLanguage": diagramLanguage,
+        "umlType": umlType,
         "diagramCode": diagram_code,
         "isRenderable": True
     }

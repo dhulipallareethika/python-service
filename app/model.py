@@ -24,7 +24,7 @@ class DiagramBaseModel(BaseModel):
 class RefineRequest(DiagramBaseModel):
     existingDiagramCode: str
     userInstruction: str
-    diagramLanguage:str
+    umlType:str
 
 class AttributeNature(str, Enum):
     Identifying = "Identifying"
@@ -77,5 +77,5 @@ class ApiResponse(BaseModel):
 
 class GenerateRequest(DiagramBaseModel):
     requirementsText: str
-    diagramLanguage: str
+    umlType: str
     classes: List[ClassModel]
